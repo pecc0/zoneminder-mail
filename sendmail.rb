@@ -5,7 +5,7 @@ require 'ostruct'
 #require 'zip/zipfilesystem'
 
 def sendmail path
-	paramsHash = eval(File.open('config.rb')  {|f| f.read })
+	paramsHash = eval(File.open(File.expand_path(File.dirname(__FILE__)) + '/config.rb')  {|f| f.read })
 
 	params = OpenStruct.new(paramsHash)
 
@@ -83,4 +83,5 @@ EOF
 end
 
 
-sendmail "/usr/share/zoneminder/events/1/15/07/24/21/41/27"
+#/usr/share/zoneminder/events/1/15/07/24/21/41/27
+sendmail ARGV[0].dup
